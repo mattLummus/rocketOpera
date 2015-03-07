@@ -30,3 +30,18 @@ button.start {
 	display: inherit;
 	margin-top: 32px;
 }
+
+.player {
+	color: green;
+}
+
+.enemy {
+	color: red;
+}
+
+.char {
+	position: relative;
+	height: 20px;
+	width: 20px;
+	border: 1px solid black;
+}
