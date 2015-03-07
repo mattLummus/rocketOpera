@@ -1,5 +1,6 @@
 module.exports = function () {
 	var hg = require('mercury'),
+		d = hg.Delegator(),
 		h = hg.h,
 		resolution = { x: 800, y: 600 },
 		config = {
@@ -8,11 +9,13 @@ module.exports = function () {
 			deafultPlayer: {
 				health: 100,
 				x: 150,
-				y: 200
+				y: 200,
+				speed: 30
 			},
 			defaultEnemy: {
 				x: Math.random() * resolution.x,
-				y: Math.random() * resolution.y
+				y: Math.random() * resolution.y,
+				speed: 30
 			}
 		};
 
@@ -22,6 +25,20 @@ module.exports = function () {
 			player: hg.value(config.defaultPlayer),
 			lives: hg.value(3),
 			enemies: hg.value([])
+		});
+
+		console.log('Starting app');
+
+		d.addGlobalEventListener("keydown", function (ev) {
+			var key = ev.which,
+				keys = {
+					37: 'left',
+					38: 'up',
+					39: 'right',
+					40: 'down'
+				},
+				direction = keys[key];
+				console.log(direction, key);
 		});
 
 		hg.watch(state.player, function (player) {
